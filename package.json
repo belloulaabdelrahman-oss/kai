@@ -1,0 +1,63 @@
+{
+  "name": "nexpos-desktop",
+  "version": "1.0.0",
+  "description": "NexPOS - Cloud-based Point of Sale and Inventory Management System",
+  "main": "electron/main.js",
+  "homepage": "./",
+  "author": "NexPOS Team",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win --publish never",
+    "build:win-portable": "electron-builder --win portable --publish never",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "electron": "^latest",
+    "electron-builder": "^latest"
+  },
+  "build": {
+    "appId": "com.nexpos.app",
+    "productName": "NexPOS",
+    "files": [
+      "electron/main.js",
+      "electron/preload.js",
+      "trickle/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "NexPOS"
+    }
+  }
+}
